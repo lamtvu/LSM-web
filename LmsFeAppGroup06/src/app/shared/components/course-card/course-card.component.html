@@ -1,0 +1,19 @@
+<div class="h-full shadow-lg">
+  <div class="card-img" *ngIf="!course.image else image">
+    <img src="https://img-c.udemycdn.com/course/240x135/1778502_f4b9_12.jpg" alt="" class="w-full h-32">
+  </div>
+  <ng-template #image>
+    <img [src]="'https://lmstechbe.azurewebsites.net/api/course/image/' + course.id" alt="" class="w-full h-32">
+  </ng-template>
+
+  <div class="card-content mt-2 p-4">
+    <div class="font-bold text-xs md:text-base overflow-hidden w-full ml-1 ">
+      {{course.name | formatData:0:40}}
+    </div>
+    <div class="text-gray-600 text-sm ml-1" [innerText]="course.description">
+    </div>
+    <div class="text-gray-500 font-medium text-sm ml-1">
+      {{course.instructor.fullName}}
+    </div>
+  </div>
+</div>

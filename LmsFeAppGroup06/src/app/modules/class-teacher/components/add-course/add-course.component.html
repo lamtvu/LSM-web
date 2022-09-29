@@ -1,0 +1,38 @@
+<div class="h-full relative">
+    <div class="flex justify-start gap-8 items-center">
+        <div class="text-2xl">
+            Add Class
+        </div>
+        <mat-form-field appearance="standard">
+            <mat-label>Search Value</mat-label>
+            <input matInput (change)="onChange($event)">
+        </mat-form-field>
+        <div class="flex justify-center items-center" *ngIf="isLoading">
+            <mat-spinner [diameter]="30">
+            </mat-spinner>
+        </div>
+        <div class="text-lg font-medium text-green-400">
+            {{messager}}
+        </div>
+    </div>
+    <div style="min-height: 300px;">
+        <div class="grid grid-cols-5 gap-4" *ngIf="$courses| async as courses">
+            <div *ngFor="let course of courses.data" class="group relative">
+                <app-course-card [course]="course"></app-course-card>
+                <div class="absolute bottom-0 right-0 m-4">
+                    <button mat-raised-button (click)="addCourse(course)">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <mat-paginator #paginator [length]="10" [pageSize]="10" [pageIndex]="0" [pageSizeOptions]="[5,10,50,100]"
+        (page)="pageChange($event)">
+        </mat-paginator>
+    </div>
+    <div class="absolute top-0 right-0">
+        <button mat-icon-button [matDialogClose]="isAdded">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+</div>

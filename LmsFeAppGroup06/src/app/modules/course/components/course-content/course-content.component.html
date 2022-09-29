@@ -1,0 +1,40 @@
+<div class="h-screen">
+  <!-- Header -->
+  <div class="bg-gray-600">
+    <div class="flex item-center justify-between">
+      <div class="text-white py-1" [ngClass]="{'bg-gray-400':isShow}">
+        <button mat-button (click)="isShow = !isShow">
+          <mat-icon>menu</mat-icon>Lessons
+        </button>
+      </div>
+      <div class="ml-2 text-white">
+        <button mat-button>
+          <mat-icon>home</mat-icon>Back To Course
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- Content -->
+  <div class="h-full" >
+    <div class="container flex h-full">
+      <div class="menu shadow-md transition-all duration-500 overflow-hidden" [ngClass]="{'w-1/5':isShow,'w-0':!isShow}">
+        <div class="bg-gray-400 text-white text-lg py-4 px-2 whitespace-nowrap overflow-hidden">
+            Course Name
+        </div>
+        <div class="bg-gray-600 h-full">
+          <div class="text-white pl-1 " *ngFor="let section of sections">
+            <div class="text-lg py-1 shadow-md shadow-gray"> {{section.name}} </div>
+            <div class="py-5 px-1 border-b-2 border-gray-500" *ngFor="let content of section.contents">{{content.name}}</div>
+          </div>
+        </div>
+      </div>
+      <div class="content w-full">
+        <div class="">
+          <video width="320" height="240" controls>
+            <source src="https://lmstechbe.azurewebsites.net/api/Content/file/34" type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

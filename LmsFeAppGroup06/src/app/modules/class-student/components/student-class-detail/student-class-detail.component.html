@@ -1,0 +1,17 @@
+<div class="grid lg:grid-cols-6">
+  <div class="col-span-5">
+      <router-outlet></router-outlet>
+  </div>
+  <div class="col-1 p-4 m-4">
+      <div class="shadow-md p-4 bg-gray-100">
+          <div class="text-base text-gray-400 cursor-pointer hover:text-gray-600 hover:underline" routerLink='plan'
+              [routerLinkActive]="['underline','text-gray-500']">Plan</div>
+          <div class="text-base text-gray-400 cursor-pointer hover:text-gray-600 hover:underline"
+              routerLink='notification' [routerLinkActive]="['underline','text-gray-500']">Notification</div>
+          <div class="text-base text-gray-400 cursor-pointer hover:text-gray-600 hover:underline"
+              routerLink='exercise' [routerLinkActive]="['underline','text-gray-500']">Exercise</div>
+          <div class="text-base text-gray-400 cursor-pointer hover:text-gray-600 hover:underline" routerLink='quiz'
+              [routerLinkActive]="['underline','text-gray-500']">Quiz</div>
+      </div>
+  </div>
+</div>

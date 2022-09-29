@@ -1,0 +1,29 @@
+<div class="shadow-lg text-gray-500 p-4">
+    <div class="text-xl text-center py-4 font-medium">class Information</div>
+    <div>
+        <div class="flex mt-4">
+            <div class='text-base font-medium ml-4'>
+                Class Name:
+            </div>
+            <div class='text-base ml-4'>
+                {{classData.name}}
+            </div>
+        </div>
+        <div class="flex mt-4">
+            <div class='text-base font-medium ml-4'>
+                Date Create:
+            </div>
+            <div class='text-base ml-4'>
+                {{classData.createDate | date:'dd/MM/yyyy'}}
+            </div>
+        </div>
+        <div class="mt-4">
+            <div class='text-base font-medium ml-4'>
+                Description:
+            </div>
+            <div class='text-base ml-8 text-left'>
+                {{classData.description}}
+            </div>
+        </div>
+    </div>
+</div>

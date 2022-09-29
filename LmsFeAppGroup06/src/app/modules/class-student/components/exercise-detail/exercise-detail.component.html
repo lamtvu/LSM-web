@@ -1,0 +1,67 @@
+<div>
+    <div class="grid grid-cols-4 gap-4">
+        <div class="col-span-3">
+            <div class="shadow-lg p-4 m-4" *ngIf="$exercise |async as exercise">
+                <div class="flex items-center">
+                    <button mat-icon-button [routerLink]="['../']">
+                        <mat-icon>keyboard_arrow_left</mat-icon>
+                    </button>
+                    <div class="text-lg text-gray-500">
+                        {{exercise.name}}
+                    </div>
+                </div>
+                <div [innerText]="exercise.description" class="p-4">
+                </div>
+                <div class="text-blue-400 font-medium p-4">
+                    Due time: {{exercise.dueDate | date:'dd/MM/yyyy HH:mm'}}
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="shadow-lg p-4 m-4" *ngIf="$submission|async as submission else havenotsubmitted">
+                <div class="text-base text-gray-500">
+                    Submission <span class="text-blue-500 text-sm"> (submited) </span>
+                </div>
+                <div class="text-md text-gray-500 my-4 overflow-hidden">
+                    File: <div (click)="downloadHandling(submission)" class="text-blue-500 cursor-pointer">
+                        {{submission.fileType}}</div>
+                </div>
+                <div class="text-md text-gray-500 my-4 overflow-hidden">
+                    Score: <span class="text-blue-500">{{submission.core}}</span>
+                </div>
+                <div class="text-md text-gray-500 my-4 overflow-hidden">
+                    Submit date: <a href="#" class="text-gray-500">{{submission.submitDate| date:'dd/MM/yyyy'}}</a>
+                </div>
+                <div class="text-md text-gray-500" [innerText]="submission.comment">
+                </div>
+                <mat-progress-bar mode="indeterminate" *ngIf="isRemoving"></mat-progress-bar>
+                <div>
+                    <button mat-raised-button (click)="deleteSubmit(submission)"
+                    class="w-full">Remove Submission</button>
+                </div>
+            </div>
+            <ng-template #havenotsubmitted>
+                <div class=" shadow-lg p-4 m-4">
+                    <div class="text-base text-gray-500">
+                        Submission <span class="text-gray-500 text-sm"> (have not submitted) </span>
+                    </div>
+                    <div class="my-4">
+                        <div *ngIf="uploadFile" class="mb-2 text-gray-600">
+                            {{uploadFile.name |formatData:0:20}}
+                        </div>
+                        <input [hidden]="true" id="uploadFile" type="file" class="text-blue-400"
+                            (change)="handleFileInput($event)" />
+                        <label for="uploadFile" class="py-2 px-4 rounded-md bg-gray-100 shadow-lg
+                        hover:bg-gray-200">
+                            Upload
+                        </label>
+                    </div>
+                    <mat-progress-bar mode="indeterminate" *ngIf="isUploading"></mat-progress-bar>
+                    <button mat-raised-button *ngIf="uploadFile" [disabled]="isUploading" class="w-full"
+                        (click)="submitHandling()">Submit</button>
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</div>

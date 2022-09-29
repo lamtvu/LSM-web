@@ -1,0 +1,8 @@
+<div class=' shadow-lg flex items-end'>
+    <div class="text-gray-500 font-medium text-xl m-4">Class Management</div>
+</div>
+<div class="ml-4 xl:grid xl:grid-cols-3 xl:gap-4 m-4">
+    <app-class-list (onClickRow)="clickRowHandling($event)" [ngClass]="{'col-span-3':!focusClass}" class="col-span-2"></app-class-list>
+    <app-class-information *ngIf="focusClass" [classData]="focusClass"></app-class-information>
+</div>
+

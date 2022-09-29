@@ -1,0 +1,123 @@
+<div class="login-page">
+  <div class="bg-green-300 text-center p-4 shadow-lg text-white text-xl font-medium m-4 rounded-lg"
+    *ngIf="registerState.state==='SUCCESS'">
+    Success, please verify gmail
+  </div>
+  <mat-card class="mat-elevation-z12">
+    <mat-card-title style="text-align:center;">SignIn/SignUp</mat-card-title>
+    <mat-tab-group mat-stretch-tabs class="example-stretched-tabs" (selectedTabChange)="loginForm.reset();">
+      <mat-tab label="Sign In">
+        <mat-card-content>
+          <div [formGroup]="loginForm">
+            <mat-form-field>
+              <mat-label>username*</mat-label>
+              <input matInput type="text" formControlName='username'>
+              <mat-error>Username is required</mat-error>
+              <mat-icon matSuffix>perm_identity</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <mat-label>password</mat-label>
+              <input matInput type="password" formControlName='password'>
+              <mat-error>
+                Password is required
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <div class="text-center text-red-400 text font-medium" *ngIf="loginState.state === 'ERROR'">
+              {{ loginState.message }}
+            </div>
+            <div class="flex justify-center" *ngIf="loginState.state === 'LOADING'">
+              <mat-spinner [diameter]="25"></mat-spinner>
+            </div>
+            <div class="m-4 flex justify-center items-center flex-col gap-4">
+              <button mat-raised-button color="primary" (click)="handlerLogin()"
+              class="w-52"
+                [disabled]="loginState.state==='LOADING'">
+                Sign In
+              </button>
+              <button mat-raised-button [routerLink]="['/home']"
+              class="w-52">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </mat-card-content>
+      </mat-tab>
+      <mat-tab label="Sign Up">
+        <mat-card-content>
+          <div [formGroup]="registerForm">
+            <mat-form-field>
+              <input matInput placeholder="User Name" formControlName="username">
+              <mat-icon matSuffix>perm_identity</mat-icon>
+              <mat-error *ngIf="errorHandling('username','required')">
+                Username is required
+              </mat-error>
+              <mat-error *ngIf="errorHandling('username','minlength')">
+                min length is 5
+              </mat-error>
+              <mat-error *ngIf="errorHandling('username','maxlength')">
+                max length is 50
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Fullname" formControlName="fullname">
+              <mat-error *ngIf="errorHandling('fullname','required')">
+                Username is required
+              </mat-error>
+              <mat-error *ngIf="errorHandling('fullname','minlength')">
+                min length is 5
+              </mat-error>
+              <mat-error *ngIf="errorHandling('fullname','maxlength')">
+                max length is 50
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Email" formControlName="email">
+              <mat-error>Email is required</mat-error>
+              <mat-icon matSuffix>email</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput placeholder="Phone number" formControlName="phone" type="tel">
+              <mat-icon matSuffix>phone</mat-icon>
+              <mat-error *ngIf="errorHandling('phone', 'required') ">
+                Phone number is required
+              </mat-error>
+              <mat-error *ngIf="errorHandling('phone','pattern')">
+                Invalid phone number
+              </mat-error>
+            </mat-form-field>
+            <mat-radio-group class="gender" formControlName="gender">
+              <div class="ml-4">Gender</div>
+              <mat-radio-button value="Male" class="ml-4" [checked]="true">Male</mat-radio-button>
+              <mat-radio-button value="Female" class="ml-4">Female</mat-radio-button>
+            </mat-radio-group>
+            <mat-form-field>
+              <input class="pwd" matInput placeholder="Password" type="password" formControlName="password">
+              <mat-error>
+                Password is required
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <mat-form-field>
+              <input class="pwd" matInput placeholder="Retype Password" type="password"
+                formControlName="confirmPassword">
+              <mat-error *ngIf="errorHandling('confirmPassword','equal')">
+                don't equal password
+              </mat-error>
+              <mat-error *ngIf="errorHandling('confirmPassword','required')">
+                Re-Enter Password is required
+              </mat-error>
+              <mat-icon matSuffix>lock</mat-icon>
+            </mat-form-field>
+            <div class="flex justify-center" *ngIf="registerState.state==='LOADING'">
+              <mat-spinner [diameter]="25"></mat-spinner>
+            </div>
+            <button mat-raised-button color="primary" class="login-button" (click)="handlerRegister()">
+              Sign Up
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+</div>

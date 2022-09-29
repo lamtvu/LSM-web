@@ -1,0 +1,11 @@
+<div class="shadow-inner h-full text-gray-600 bg-gray-100 ">
+    <div class=" shadow-lg">
+        <div class="flex p-2 hover:bg-gray-700 hover:text-red-50 text-base text-center  justify-between shadow-sm border-r-4 cursor-pointer px-4"
+            *ngFor="let link of dataLinks" [routerLink]="[link.url]" [routerLinkActive]="['bg-gray-500','text-white']">
+            <div [@showHidden]="stateName" class="whitespace-nowrap overflow-hidden">{{link.label}}</div>
+            <div class="mr-1">
+                <mat-icon style="font-size: 2rem;">{{link.icon}}</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>

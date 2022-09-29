@@ -1,0 +1,29 @@
+<div class="grid grid-cols-6">
+    <div class="col-span-5 ">
+        <div style="min-height: 300px;" class="relative">
+            <div class="p-4">
+                <mat-progress-bar mode="indeterminate" *ngIf="isLoading"></mat-progress-bar>
+            </div>
+            <div class="grid grid-cols-4 gap-4 m-4" *ngIf="$course | async as courses">
+                <div *ngFor="let course of courses.data" class="relative">
+                    <app-course-card [course]="course"></app-course-card>
+                    <div class="absolute top-full text-red-400 transform -translate-y-full right-0 p-2">
+                        <button mat-icon-butto (click)="deleteCourse(course)" [disabled]="isLoading">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div>
+            <mat-paginator #paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+                aria-label="Select page" (page)="pageChange($event)">
+            </mat-paginator>
+        </div>
+    </div>
+    <div class="shadow-lg">
+        <div class="flex flex-col justify-center m-4">
+            <button mat-raised-button (click)="addCourse()">Add Course</button>
+        </div>
+    </div>
+</div>

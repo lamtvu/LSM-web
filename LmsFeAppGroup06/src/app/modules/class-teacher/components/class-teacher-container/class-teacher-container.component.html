@@ -1,0 +1,10 @@
+<div class="shadow-lg p-4">
+    <div class="text-gray-500 font-medium text-xl">{{currentClass?.name}}</div>
+    <div class="">
+        <nav mat-tab-nav-bar>
+            <a mat-tab-link *ngFor="let link of links" [routerLink]="link.url" (click)="activeLink = link.url"
+                [active]="activeLink.includes(link.url)"> {{link.label}} </a>
+        </nav>
+    </div>
+</div>
+<router-outlet></router-outlet>

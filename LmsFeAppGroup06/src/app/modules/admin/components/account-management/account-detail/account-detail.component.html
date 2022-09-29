@@ -1,0 +1,82 @@
+<div class="shadow-lg text-gray-500 p-4">
+  <div class="text-xl text-center py-4 font-medium">Account Information</div>
+  <div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Username :
+      </div>
+      <div class='text-base ml-4'>
+        {{userData.username}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Email :
+      </div>
+      <div class='text-base ml-4'>
+        {{userData.email}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Status:
+      </div>
+      <div class='text-base ml-4'*ngIf="userData.isLock === false">
+        Active
+      </div>
+      <div class='text-base ml-4'*ngIf="userData.isLock === true">
+        Locked
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Fullname:
+      </div>
+      <div class='text-base ml-8 text-left'>
+        {{userData.fullName}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Role:
+      </div>
+      <div class='text-base ml-8 text-left'>
+        {{userData.role.roleName}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Verify:
+      </div>
+      <div class='text-base ml-8 text-left'>
+        {{userData.verify}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Image:
+      </div>
+      <div class='text-base ml-8 text-left'>
+        <label for="image">
+          <input type="file" name="image" id="image" style="display:none;" (change)="onSelectFile($event)" />
+          <img [src]="'https://lmstechbe.azurewebsites.net/api/user/avatar/'+this.userData.id" alt="upload" width="90" height="90" class="border-2" />
+        </label>
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        CreateDate:
+      </div>
+      <div class='text-base ml-8 text-left'>
+        {{userData.createDate | date: 'dd/MM/y hh:mm:ss a'}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Phone:
+      </div>
+      <div class='text-base ml-8 text-left'>
+        {{userData.phone}}
+      </div>
+    </div>
+  </div>

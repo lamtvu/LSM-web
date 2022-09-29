@@ -1,0 +1,88 @@
+<div class="grid grid-cols-4">
+    <div class="col-span-3">
+        <div class=" m-4 shadow-lg rounded-b-lg flex flex-col justify-between relative" style="min-height: 300px;">
+            <table class="w-full shadow-lg">
+                <tr class="text-gray-600 font-medium bg-gray-200 ">
+                    <td class="p-3 rounded-l-lg">stt</td>
+                    <td class="p-3">username</td>
+                    <td class="p-3 hidden lg:table-cell">submit date</td>
+                    <td class="p-3 hidden xl:table-cell">score</td>
+                    <td class="p-3 rounded-r-lg text-center" *ngIf="option==='EXERCISE'">edit</td>
+                </tr>
+                <ng-container *ngIf="option==='QUIZ'; else submissExerciseList">
+                    <tbody *ngIf="$submissionQuizs |async as submissions">
+                        <tr class="text-md hover:bg-gray-100"
+                            *ngFor="let submission of submissions.data, let idx = index">
+                            <td class="pl-3 py-2 border-b-2 border-gray-100">{{idx + 1}}</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100">{{submission.student.username}}</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100 hidden lg:table-cell">7/8/2022</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100 hidden xl:table-cell">{{submission.core}}/10
+                            </td>
+                        </tr>
+                    </tbody>
+                </ng-container>
+                <ng-template #submissExerciseList>
+                    <tbody *ngIf="$submissionExercise |async as submissions">
+                        <tr class="text-md hover:bg-gray-100"
+                            *ngFor="let submission of submissions.data, let idx = index">
+                            <td class="pl-3 py-2 border-b-2 border-gray-100">{{idx + 1}}</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100">{{submission.student.username}}</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100 hidden lg:table-cell">7/8/2022</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100 hidden xl:table-cell">{{submission.core}}/10
+                            </td>
+                            <td class="flex justify-center text-blue-400">
+                                <button mat-icon-button (click)=" openSubmissionExerciseDetail(submission)">
+                                    <mat-icon>edit</mat-icon>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+            <div class="w-full h-full absolute left-0 top-0 flex justify-center items-center" *ngIf="isLoadingList">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+        <mat-paginator #paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+            aria-label="Select page">
+        </mat-paginator>
+    </div>
+    <div>
+        <div class="m-4 p-4 shadow-lg">
+            <mat-form-field appearance="legacy">
+                <mat-label>Quiz/Exercise</mat-label>
+                <mat-select [(value)]="option" (selectionChange)="onSelectOptionChange()">
+                    <mat-option value='QUIZ'>
+                        Quiz
+                    </mat-option>
+                    <mat-option value='EXERCISE'>
+                        Exercise
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <ng-container *ngIf="option==='QUIZ'; else exerciseList">
+                <mat-form-field appearance="legacy" *ngIf="$quizs | async as quizs">
+                    <mat-label>Name</mat-label>
+                    <mat-select (selectionChange)="onSelectQuizChange($event.value)">
+                        <mat-option *ngFor="let quiz of quizs" [value]="quiz.id">
+                            {{quiz.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-container>
+            <ng-template #exerciseList>
+                <mat-form-field appearance="legacy" *ngIf="$exercises | async as exercises">
+                    <mat-label>Name</mat-label>
+                    <mat-select (selectionChange)="onSelectExerciseChange($event.value)">
+                        <mat-option *ngFor="let exercise of exercises" [value]="exercise.id">
+                            {{exercise.name}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </ng-template>
+            <div *ngIf="isLoadingInput">
+                <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+            </div>
+        </div>
+    </div>
+</div>

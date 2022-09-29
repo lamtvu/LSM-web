@@ -1,0 +1,71 @@
+<div>
+  <div class="py-4" *ngIf="isLoading">
+    <mat-progress-bar mode="indeterminate">
+    </mat-progress-bar>
+  </div>
+  <div class="mt-10 flex items-center">
+    <div class="w-1/12" *ngIf="currentUser">
+      <ng-container *ngIf="!currentUser.image; else elseTemplate">
+        <div>
+          <mat-icon>person</mat-icon>
+        </div>
+      </ng-container>
+      <ng-template #elseTemplate>
+        <img class="h-10 w-10 rounded-full" [src]="'https://lmstechbe.azurewebsites.net/api/user/avatar/3'" alt="">
+      </ng-template>
+    </div>
+    <div class="w-full" [formGroup]="commentForm">
+      <div class="border-b">
+        <div class="pl-3">
+          <input
+            class="appearance-none  w-full bg-transparent border-none text-gray-700 leading-tight focus:outline-none"
+            type="text" placeholder="Leave Your Comment Here" (click)="isComment = true" id="myInput"
+            formControlName="comment">
+        </div>
+      </div>
+      <div class="flex justify-between mt-2" *ngIf="isComment">
+        <div class="text-yellow-300">
+          <button mat-icon-button *ngFor="let r of ratingArr; index as i" (click)="onClick(i)">
+            <mat-icon>{{returnStar(i)}}</mat-icon>
+          </button>
+        </div>
+        <div class="flex justify-end">
+          <div class="mr-2"><button mat-raised-button color="basic" (click)="onCancelComment()">Cancel</button></div>
+          <div><button mat-raised-button color="primary" (click)="onCreateComment()"
+              [disabled]="isLoading">Post</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="mt-10">
+
+  <div *ngIf="commentlist">
+    <div *ngFor="let comment of commentlist" class="flex border-b-2 p-4">
+      <div *ngIf="!comment.sender.image else image">
+        <img class="h-10 w-10 rounded-full"
+          src="https://img.poki.com/cdn-cgi/image/quality=78,width=600,height=600,fit=cover,g=0.5x0.5,f=auto/b5bd34054bc849159d949d50021d8926.png"
+          alt="">
+      </div>
+      <ng-template #image>
+        <img class="h-10 w-10 rounded-full" [src]="'https://lmstechbe.azurewebsites.net/api/user/avatar/' + comment.senderId" alt="">
+      </ng-template>
+
+      <div class="flex justify-between w-full">
+        <div class="ml-4">
+          <div class="">
+            <div class="text-sm font-medium text-gray-900">
+              {{comment.sender.fullName}}
+            </div>
+          </div>
+          <div class="text-sm text-gray-500 pt-4" [innerText]="comment.comment">
+          </div>
+        </div>
+        <div class="ml-3">
+          <app-star-review [starNumber]="comment.star"></app-star-review>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

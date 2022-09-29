@@ -1,0 +1,85 @@
+<div class="grid grid-cols-8">
+  <!-- Card -->
+  <div class="card col-span-2">
+    <div class="h-auto shadow-lg m-4">
+      <div *ngIf="course">
+        <!-- Card image -->
+        <div>
+          <label for="image">
+            <img [src]="'https://lmstechbe.azurewebsites.net/api/course/image/' + course.id" alt="upload"
+              class="shadow-lg w-full h-40" />
+          </label>
+        </div>
+        <!-- Progress Bar -->
+        <div class="p-4">
+          <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+          <div class="ml-3">0%</div>
+        </div>
+        <!-- Member -->
+        <div class="border-t-2 mt-4">
+          <div class="flex justify-between">
+            <div class="font-medium text-lg ml-2">{{course.name}}</div>
+          </div>
+        </div>
+        <div class="flex align-middle mt-8 justify-center">
+          <div class="">
+            <button mat-icon-button [routerLink]="['/course/course-detail',18]">
+              <mat-icon>share</mat-icon>Share
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Content -->
+  <div class="content col-span-6 m-4">
+    <div class="border-1 shadow-lg p-7 h-auto" *ngIf="course">
+      <div class="p-2">
+        <div class="text-lg font-medium">
+          {{course.name}}
+          <span class="text-red-400 rounded-xl text-sm" *ngIf="course.isLook">
+            Disable
+          </span>
+        </div>
+        <div class="text-gray-500 mb-3">
+          {{course.description}}
+        </div>
+        <div class="my-4">
+          <span class="text-white py-1 px-4 rounded-xl"
+            [ngClass]="{'bg-green-400': !course.isPublic,'bg-blue-400': course.isPublic}">
+            {{course.isPublic ? 'public' : 'priavte'}}
+          </span>
+        </div>
+        <div class="text-gray-500">
+          Create by: {{course.instructor.fullName}}
+        </div>
+      </div>
+      <mat-tab-group>
+        <mat-tab label="Course">
+          <div *ngFor="let section of sections">
+            <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+              <mat-expansion-panel-header>
+                <mat-panel-title>
+                  <div class="font-bold"> {{section.name}} </div>
+                </mat-panel-title>
+                <mat-panel-description>
+                </mat-panel-description>
+              </mat-expansion-panel-header>
+              <section *ngFor="let content of section.contents">
+                <div class=" border-gray-200 border-b-2" role="button">
+                  <div class="text-gray-700 font-medium ml-2 pb-2 flex">
+                    <mat-checkbox></mat-checkbox>
+                    <div (click)="openDialog(content)" class="ml-3">{{content.name}}</div>
+                  </div>
+                </div>
+              </section>
+            </mat-expansion-panel>
+          </div>
+        </mat-tab>
+        <mat-tab label="Reviews">
+          <app-course-review></app-course-review>
+        </mat-tab>
+      </mat-tab-group>
+    </div>
+  </div>
+</div>

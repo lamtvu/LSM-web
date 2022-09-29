@@ -1,0 +1,27 @@
+<div class="ml-auto mr-auto w-full" [formGroup]="contentForm">
+  <div class="">
+    <!-- Content Title -->
+    <div class="oe_title w-1/2 mt-5">
+      <mat-form-field class="w-full">
+        <input matInput placeholder="Content Title" formControlName="name">
+        <mat-error *ngIf="errorHandling('name','required')">Enter Your Content Title</mat-error>
+        <mat-error *ngIf="errorHandling('name','minlength')">Minlength is 5</mat-error>
+      </mat-form-field>
+    </div>
+    <!-- AddContent -->
+    <div class="mt-5">
+      <div>
+        <input type="file" name="profile" (change)="onFileSelect($event)" />
+      </div>
+    </div>
+    <div class="p-4" *ngIf="isLoading">
+      <mat-spinner [diameter]="30" #loading></mat-spinner>
+    </div>
+    <div class="grid grid-cols-2 gap-4 mt-12">
+      <button class="bg-blue-400 rounded hover:bg-blue-300 text-white py-3 px-5 focus:outline-none"
+        (click)="onClickHandle()">{{!checkcontentData ? 'Create':'Edit' }}</button>
+      <button class="bg-red-400 rounded hover:bg-red-300 text-white py-3 px-5 focus:outline-none"
+        [mat-dialog-close]="false">Cancel</button>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<div class="grid grid-cols-4 gap-4">
+    <div class=" pt-4 text-red-500 text-center text-lg font-medium col-span-4" *ngIf="errorState.isError">
+        {{errorState.message}}
+    </div>
+    <div class="col-span-3">
+        <div class="shadow-lg p-4 m-4 relative">
+            <div *ngIf="currentQuestion">
+                <div class="text-lg flex">
+                    <span class="font-medium mr-4">Question:</span>
+                    <div [innerText]="currentQuestion.content">
+                    </div>
+                </div>
+                <div [formGroup]="answerInput">
+                    <mat-radio-group aria-label="Select an option" class="grid grid-cols-1 gap-5 mt-4"
+                        formControlName="answer">
+                        <mat-radio-button *ngFor="let answer of currentQuestion.answers" [value]="answer.id"
+                            [checked]="checkExistAnswer(answer.id)">
+                            {{answer.content}}</mat-radio-button>
+                    </mat-radio-group>
+                </div>
+                <div class="flex justify-between mt-8">
+                    <div>
+                        <button mat-raised-button (click)="previousQuestion()"
+                            *ngIf="!checkFirstQuestion()">previous</button>
+                    </div>
+                    <div>
+                        <button mat-raised-button (click)="nextQuestion()" *ngIf="!checkLastQuestion()">next</button>
+                    </div>
+                </div>
+            </div>
+            <div class="absolute z-10 w-full h-full left-0 top-0 rounded-lg flex justify-center items-center"
+                *ngIf="isLoadQuestion">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="shadow-lg p-4 m-4 relative">
+            <div class="col-span-4 font-medium text-base">
+                Questions:
+            </div>
+            <div class="grid grid-cols-4 gap-4" *ngIf="questions">
+                <div class="shadow-lg rounded-lg bg-gray-100 p-2 text-center hover:bg-gray-200 cursor-pointer relative"
+                    *ngFor="let question of questions,let idx = index"
+                    [ngClass]="{'bg-gray-300':question.id === currentQuestionId}" (click)="chooseQuestion(question.id)">
+                    {{idx + 1}}
+                    <div class="absolute top-0 left-0 text-green-400" *ngIf="checkExistQuestion(question.id)">
+                        <mat-icon>done</mat-icon>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-8">
+                <button class="bg-gray-100 shadow-xl px-4 py-2 w-full hover:bg-gray-300 hover:text-white rounded-lg"
+                    (click)="submitQuiz()">
+                    Submit
+                </button>
+            </div>
+            <div class="absolute z-10 w-full h-full left-0 top-0 rounded-lg flex justify-center items-center"
+                *ngIf="isSubmitting">
+                <mat-spinner></mat-spinner>
+            </div>
+        </div>
+    </div>
+</div>

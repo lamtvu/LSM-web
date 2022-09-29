@@ -1,0 +1,10 @@
+<div class="flex flex-col items-center">
+    <div class="pt-4 text-lg font-medium text-blue-400">{{data.title}}</div>
+    <div class="p-4 ">Are you sure to delete <span class="font-medium">{{data.deleteName}}</span></div>
+    <div class="grid grid-cols-2 gap-4">
+        <button class="bg-blue-400 rounded gap-4 hover:bg-blue-300 text-white py-2 px-5 focus:outline-none shadow-lg"
+            [mat-dialog-close]="true">Yes</button>
+        <button class="bg-gray-400 rounded hover:bg-gray-300 py-2 text-white px-5 focus:outline-none shadow-lg"
+            [mat-dialog-close]="false">cancel</button>
+    </div>
+</div>

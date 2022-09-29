@@ -1,0 +1,48 @@
+<div class="grid grid-cols-4">
+    <div class="col-span-3">
+        <div class=" m-4 shadow-lg rounded-b-lg flex flex-col justify-between">
+            <table class="w-full shadow-lg">
+                <tr class="text-gray-600 font-medium bg-gray-200 ">
+                    <td class="p-3 rounded-l-lg">stt</td>
+                    <td class="p-3">name</td>
+                    <td class="p-3 hidden xl:table-cell">score</td>
+                </tr>
+                <ng-container *ngIf="option === 'QUIZ'; else exercise">
+                    <tbody *ngIf="$submissionQuizzes|async as submissions">
+                        <tr class="text-md hover:bg-gray-100" *ngFor="let submission of submissions, let idx = index">
+                            <td class="pl-3 py-2 border-b-2 border-gray-100">{{idx + 1}}</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100">{{submission.quiz.name}}</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100 hidden lg:table-cell">{{submission.core
+                                |number:'.2-2'}}
+                                <span class="text-sm font-thin">/10</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </ng-container>
+                <ng-template #exercise>
+                    <tbody *ngIf="$submissionExercise|async as submissions">
+                        <tr class="text-md hover:bg-gray-100" *ngFor="let submission of submissions, let idx = index">
+                            <td class="pl-3 py-2 border-b-2 border-gray-100">{{idx + 1}}</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100">{{submission.exercise.name}}</td>
+                            <td class="pl-3 py-2 border-b-2 border-gray-100 hidden lg:table-cell">{{submission.core
+                                |number:'.2-2'}}
+                                <span class="text-sm font-thin">/10</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </ng-template>
+            </table>
+        </div>
+    </div>
+    <div>
+        <div class="m-4 p-4 shadow-lg flex justify-center items-center">
+            <mat-form-field appearance="legacy">
+                <mat-label>Quiz/Exercise</mat-label>
+                <mat-select [(value)]="option" (selectionChange)="onSelectChange()">
+                    <mat-option [value]="'QUIZ'">Quiz</mat-option>
+                    <mat-option [value]="'EXERCISE'">Exercise</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</div>

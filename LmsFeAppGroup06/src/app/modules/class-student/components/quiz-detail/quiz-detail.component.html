@@ -1,0 +1,91 @@
+<div class=" grid xl:grid-cols-5">
+    <div class="xl:col-span-3">
+        <div class="flex justify-center pt-8">
+            <mat-spinner [diameter]="40" mode="indeterminate" *ngIf="isLoadingQuiz"></mat-spinner>
+        </div>
+        <div class="p-4 m-4 shadow-lg rounded-lg" *ngIf="quiz">
+            <div class="flex justify-between">
+                <div class="text-xl font-medium mb-4">
+                    <div class="flex items-center">
+                        <button mat-icon-button [routerLink]="['../../']">
+                            <mat-icon>keyboard_arrow_left</mat-icon>
+                        </button>
+                        <div>
+                            {{quiz.name}}
+                        </div>
+                    </div>
+                    <div class="text-sm font-thin">
+                        cerate date:{{quiz.createDate |date:'dd/MM/yyyy'}}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4" [innerText]="quiz.description">
+            </div>
+            <div class="text-gray-500">
+                start time: <span class="text-blue-400">{{quiz.startDate |date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+            <div class="text-gray-500">
+                Duration:<span class="text-red-400"> {{quiz.duration}}'</span>
+            </div>
+        </div>
+    </div>
+    <div class="xl:col-span-2">
+        <div class="p-4 m-4 shadow-lg rounded-lg">
+            <div class="font-medium text-base m-4">
+                Submission
+            </div>
+            <mat-progress-bar mode="indeterminate" *ngIf="isLoadingSubmission"></mat-progress-bar>
+            <div *ngIf="$submission | async as submission else submit" class="grid grid-cols-1 gap-2">
+                <div class="flex gap-4">
+                    <div class="text-base font-medium">
+                        core:
+                    </div>
+                    <div class="text-base text-blue-500">
+                        {{submission.core}}/10
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-base font-medium">
+                        Start Time:
+                    </div>
+                    <div class="text-base">
+                        {{submission.startTime | date:'dd/MM/yyyy HH:mm'}}
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-base font-medium">
+                        Finish Time:
+                    </div>
+                    <div class="text-base">
+                        {{submission.finishTime | date:'dd/MM/yyyy HH:mm'}}
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="text-base font-medium">
+                        Status:
+                    </div>
+                    <div class="text-base" [ngClass]="{'bg-blue-400':submission.isFinish}"
+                        class=" text-white rounded-lg px-4 bg-green-400">
+                        {{submission.isFinish? 'finish' : 'doing'}}
+                    </div>
+                </div>
+                <div *ngIf="!submission.isFinish && quiz">
+                    <button mat-raised-button [routerLink]="['/student/submission-quiz/', quiz.id]">Resume</button>
+                </div>
+            </div>
+            <ng-template #submit>
+                <div class="flex justify-center mt-4 flex-col">
+                    <div class="text-center">
+                        <mat-error *ngIf="submissionState.state === 'ERROR'" class="text-center pb-4">
+                            {{submissionState.message}}
+                        </mat-error>
+                    </div>
+                    <div class="flex justify-center">
+                        <button mat-raised-button (click)="createSubmission()">Start</button>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+
+</div>

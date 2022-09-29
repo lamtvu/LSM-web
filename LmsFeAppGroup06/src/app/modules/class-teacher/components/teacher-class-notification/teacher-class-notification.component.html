@@ -1,0 +1,28 @@
+<div class="min-h-screen">
+    <div class="m-4">
+        <button mat-raised-button  (click)="openCreateDialog()">Create new notification</button>
+    </div>
+    <div class="flex justify-center" *ngIf="isLoading">
+        <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+    <div *ngIf="$notifications | async as notifications">
+        <div class="p-4 m-4 shadow-lg" *ngFor="let notification of notifications">
+            <div class="flex justify-between">
+                <div class="text-xl my-4">
+                    <div>{{notification.title}}</div>
+                    <div class="text-sm font-thin">date create: {{notification.createDate | date:'dd/MM/yyyy'}}</div>
+                </div>
+                <div>
+                    <button mat-icon-button class="text-blue-400">
+                        <mat-icon (click)="openEditDialog(notification)">edit</mat-icon>
+                    </button>
+                    <button mat-icon-button class="text-red-400">
+                        <mat-icon (click)="openDeleteDialog(notification)">delete</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="text-base" [innerText]="notification.content">
+            </div>
+        </div>
+    </div>
+</div>

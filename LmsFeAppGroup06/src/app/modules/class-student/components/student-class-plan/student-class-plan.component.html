@@ -1,0 +1,21 @@
+<div class="min-h-screen">
+    <div class="m-4">
+    </div>
+    <div class="flex justify-center" *ngIf="isLoading">
+        <mat-spinner
+            [diameter]="20">
+        </mat-spinner>
+    </div>
+    <div *ngIf="$plans |async as plans">
+        <div class="p-4 m-4 shadow-lg" *ngFor="let plan of plans">
+            <div class="flex justify-between">
+                <div class="text-xl my-4">
+                    <div>{{plan.title}}</div>
+                    <div class="text-sm font-thin">date create: {{plan.createDate | date:'dd/MM/yyyy'}}</div>
+                </div>
+            </div>
+            <div class="text-base" [innerText]="plan.content">
+            </div>
+        </div>
+    </div>
+</div>

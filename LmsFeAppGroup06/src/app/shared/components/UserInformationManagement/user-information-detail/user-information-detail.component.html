@@ -1,0 +1,124 @@
+<div class=' shadow-lg flex items-end'>
+    <div class="text-gray-500 font-medium text-xl m-4">Person Information</div>
+</div>
+<div class="xl:grid xl:grid-cols-2 xl:gap-4 m-4 relative">
+    <div class="shadow-lg">
+        <div *ngIf="isLoading || isSendingMail">
+            <mat-progress-bar mode="indeterminate">
+            </mat-progress-bar>
+        </div>
+        <div *ngIf="currentUser">
+            <div class="flex mt-4">
+                <div class='text-base font-medium ml-4' ml-4>Username:</div>
+                <div class='text-base text-gray-400 ml-4'>{{currentUser?.username}}</div>
+            </div>
+            <div class="flex mt-4 gap-4 items-center flex-wrap">
+                <div class="w-full ml-4 text-green-500" *ngIf="messageSendMail">
+                    {{messageSendMail}}
+                </div>
+                <div class='text-base font-medium ml-4'>Email:</div>
+                <div class='text-base text-gray-400'>{{currentUser?.email}}</div>
+                <ng-container *ngIf="currentUser.verify; else elseTemplate">
+                    <div class='text-md text-blue-400'>verify</div>
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <div class='text-md text-red-400'>unverified</div>
+                    <button class="px-3 py-1 rounded-lg text-sm  text-gray-400 shadow-lg  font-medium"
+                        (click)="getVerify()">verify</button>
+                </ng-template>
+            </div>
+            <div class="flex mt-4">
+                <div class='text-base font-medium ml-4'>Full Name:</div>
+                <div class='text-base text-gray-400 ml-4'>{{currentUser?.fullName}}</div>
+            </div>
+            <ng-container *ngIf="currentUser.roleId != 4; else isStudent">
+                <div class="flex mt-4">
+                    <div class='text-base font-medium ml-4'>Role:</div>
+                    <div class='text-base  text-gray-400 ml-4'>{{userRole | titlecase}}</div>
+                </div>
+            </ng-container>
+            <ng-template #isStudent>
+                <div class="w-full ml-4 my-4 text-green-500" *ngIf="messageChangeRole">
+                    {{messageChangeRole}}
+                </div>
+                <div class="flex mt-4 gap-4">
+                    <div class='text-base font-medium ml-4'>Role:</div>
+                    <div class='text-base text-gray-400'>{{userRole | titlecase}}</div>
+                    <div>
+                        <button class=" px-3 py-1 rounded-lg text-sm  text-gray-400 shadow-lg  font-medium"
+                            (click)="isChangeRole = !isChangeRole">change role</button>
+                    </div>
+                </div>
+                <div class="flex justify-start ml-8 gap-8 mt-4" *ngIf="isChangeRole">
+                    <div class="px-4 py-1 cursor-pointer shadow-lg hover:bg-gray-100 rounded-sm"
+                        (click)="changeRole(2)">
+                        Teacher</div>
+                    <div class="px-4 py-1 cursor-pointer shadow-lg hover:bg-gray-100 rounded-sm"
+                        (click)="changeRole(3)">
+                        Instructor</div>
+                </div>
+            </ng-template>
+            <div class="flex mt-4">
+                <div class='text-base font-medium ml-4'>Gender:</div>
+                <div class='text-base  text-gray-400 ml-4'>{{ currentUser?.gender}}</div>
+            </div>
+            <div class="flex mt-4">
+                <div class='text-base font-medium ml-4'>CreateDate:</div>
+                <div class='text-base text-gray-400 ml-4'>{{currentUser?.createDate | date: 'dd/MM/y'}}</div>
+            </div>
+            <div class="m-4">
+                <button class="px-5 py-2 rounded-lg bg-blue-400  text-white font-medium shadow-lg"
+                    (click)="onchangeInformationDialog()">Change information</button>
+                <button class="ml-4 px-5 py-2 rounded-lg bg-blue-400  text-white font-medium shadow-lg"
+                    [routerLink]="['../change-password']">Change password</button>
+            </div>
+        </div>
+    </div>
+    <div class="shadow-lg flex flex-col items-center relative">
+        <div class="w-full absolute top-0 left-0" *ngIf="isLoadingAvatar">
+            <mat-progress-bar mode="indeterminate">
+            </mat-progress-bar>
+        </div>
+        <ng-container *ngIf=" currentUser?.image || file; else elseTemplate">
+            <img [src]="urlAvatar" alt="avatar" class="rounded-full hover:opacity-80 w-24 h-24 shadow-xl">
+        </ng-container>
+        <ng-template #elseTemplate>
+            <div class="p-4 rounded-full bg-gray-100 shadow-xl">
+                <mat-icon class="text-5xl text-gray-500" style="width: 3rem; height: 3rem;">person</mat-icon>
+            </div>
+        </ng-template>
+        <div class="mt-4">
+            <div class="text-base font-medium">{{currentUser?.fullName}}</div>
+        </div>
+        <div class="m-4">
+            <input id="avatarInput" type="file" accept=".jpg, .jpeg, .png" hidden (change)="changeFile($event)">
+            <label for="avatarInput" class="px-5 py-2 rounded-lg bg-blue-400  text-white font-medium shadow-lg">Change
+                avatar</label>
+        </div>
+        <div *ngIf="file">
+            <button class="px-12 py-2 rounded-lg bg-gray-300 hover:bg-gray-400 shadow-lg  text-white font-medium"
+                (click)="changeAvatar()">Save</button>
+        </div>
+    </div>
+</div>
+<div class="mx-4 mt-8 shadow-lg p-4">
+    <div class="text-gray-600 text-xl font-medium m-4">course progressions</div>
+    <div class="p-4">
+        <div class="grid grid-cols-3 p-4 shadow-lg">
+            <div class="text-medium">
+                dotnet 05
+            </div>
+            <div class=" col-span-2">
+                <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
+            </div>
+        </div>
+        <div class="grid grid-cols-3 p-4 shadow-lg mt-4">
+            <div class="text-medium">
+                mearn basic
+            </div>
+            <div class=" col-span-2">
+                <mat-progress-bar mode="determinate" value="20"></mat-progress-bar>
+            </div>
+        </div>
+    </div>
+</div>

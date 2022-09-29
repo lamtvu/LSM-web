@@ -1,0 +1,63 @@
+<div class=' shadow-lg flex items-end'>
+  <div class="text-gray-500 font-medium text-xl m-4">Class To Enroll</div>
+</div>
+<div class="">
+  <div class="shadow-lg p-4">
+    <div class='grid grid-cols-2 m-4'>
+      <div>
+        <input type="text" class="bg-gray-50 focus:outline-none rounded-md py-2 shadow-lg" #searchInput>
+        <button class="bg-gray-200 hover:bg-gray-300 h-full p-2 focus:outline-none rounded-lg shadow-lg"
+        (click)="searchHandling()" >search</button>
+      </div>
+    </div>
+    <table class="min-w-full divide-y divide-gray-200 shadow-lg">
+      <thead class="bg-gray-100">
+        <tr>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            ClassName
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Teacher
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Description
+          </th>
+          <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+            Action
+          </th>
+        </tr>
+      </thead>
+      <!-- <div *ngIf="isLoading"><mat-spinner [diameter]="30" #loading></mat-spinner></div> -->
+      <tbody class="bg-white divide-y divide-gray-200" *ngIf="$classes | async as list">
+        <tr class="hover:bg-gray-200" *ngFor="let class of list?.data">
+          <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-600">
+            {{class.classReadDto.name}}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap font-medium text-gray-700">
+            {{class.classReadDto.teacher.fullName}}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            {{class.classReadDto.description}}
+          </td>
+          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+            <button mat-icon-button class="text-blue-400"*ngIf="class.isRequest === false" (click)="createDialog(class);$event.stopPropagation()">
+              <mat-icon>send</mat-icon>
+            </button>
+            <button mat-icon-button class="text-red-400"*ngIf="class.isRequest === true" (click)="deleteDialog(class);$event.stopPropagation()">
+            <mat-icon>cancel</mat-icon>
+          </button>
+          </td>
+        </tr>
+      </tbody>
+      <ng-template #loading>
+        <div class="p-4">
+          <mat-spinner [diameter]="30" #loading></mat-spinner>
+        </div>
+      </ng-template>
+    </table>
+    <!-- <mat-paginator [length]="pageEvent.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+      (page)="pageHandling($event)" aria-label="Select page" #paginator>
+    </mat-paginator> -->
+  </div>
+
+</div>

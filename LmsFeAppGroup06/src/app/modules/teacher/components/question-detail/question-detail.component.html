@@ -1,0 +1,45 @@
+<div class="m-4 relative" [formGroup]="questionForm">
+    <div class="text-base flex items-start">
+        <span class="font-medium mr-4">Question:</span>
+        <textarea cols="30" rows="5" class="focus:outline-none shadow-lg w-full" formControlName="content">
+        </textarea>
+    </div>
+    <div class="m-4 inline-block" formGroupName="answers">
+        <div class="text-base text-gray-400 my-4">choose correct question:</div>
+        <div>
+            <div *ngFor="let answer of answers.controls, let idx = index" class="my-2" [formGroupName]="idx">
+                <div class="flex items-center">
+                    <mat-checkbox formControlName="isCorrect">
+                    </mat-checkbox>
+                    <mat-form-field class="mx-4" appearance="outline">
+                        <input matInput type="text" formControlName="content" class="px-4 mx-4">
+                        <mat-error>required</mat-error>
+                    </mat-form-field>
+                    <button mat-icon-button (click)="removeAnswer(idx)">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                </div>
+            </div>
+            <div class="flex justify-center">
+                <button mat-icon-button>
+                    <mat-icon (click)="addAnswer()">add</mat-icon>
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="flex justify-end">
+        <button class="bg-blue-400 rounded hover:bg-blue-300 mx-4 text-white py-2 px-5 focus:outline-none shadow-lg"
+            (click)="saveHandling()">
+            Save
+        </button>
+        <button class="bg-gray-400 rounded hover:bg-gray-300 mx-4 text-white py-2 px-5 focus:outline-none shadow-lg" 
+        *ngIf="questionId" (click)="deleteHandling()">
+            Delete
+        </button>
+    </div>
+    <div class="w-full h-full absolute top-0 left-0 bg-gray-200 opacity-50 flex justify-center items-center p-4 rounded-lg" *ngIf="isLoading">
+        <div>
+            <mat-spinner></mat-spinner>
+        </div>
+    </div>
+</div>

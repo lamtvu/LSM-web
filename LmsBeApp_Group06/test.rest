@@ -1,0 +1,144 @@
+POST https://localhost:5001/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "lamtvu3",
+  "password": "string"
+}
+
+###
+POST https://localhost:5001/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+
+  "username": "hiiphlinh",
+  "password": "123456"
+
+
+}
+
+###
+GET https://localhost:5001/api/class/request?searchValue='dotnet01'
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImhpaXBobGluaCIsInJvbGUiOiJTdHVkZW50IiwiVmVyaWZ5IjoiRmFsc2UiLCJVc2VySWQiOiI0IiwibmJmIjoxNjMxODY0ODA1LCJleHAiOjE2MzE4Njg0MDUsImlhdCI6MTYzMTg2NDgwNX0.gXP7CtTseMU3nhDJ0BJhGKt_moLUowcamyvexZb-O4c
+
+###
+POST https://localhost:5001/api/auth/GetVerify HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN0cmluZyIsInJvbGUiOiJBZG1pbiIsIlZlcmlmeSI6IkZhbHNlIiwibmJmIjoxNjI4NzcxOTQ0LCJleHAiOjE2Mjg3NzI4NDQsImlhdCI6MTYyODc3MTk0NH0.tUZLQ0CfvZjon85FkTOxe5lSrHrOHswkxJccJL8gceY
+
+###
+GET https://localhost:5001/api/class/owned?page=0&limit=1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dTMiLCJyb2xlIjoiSW5zdHJ1Y3RvciIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2MjkzNjUzMDcsImV4cCI6MTYyOTM2NjIwNywiaWF0IjoxNjI5MzY1MzA3fQ.rwR25tv0ur7vaOb_pMgaIU2SGj8kBF_z1oANRQnhrKY
+
+###
+POST https://localhost:5001/api/class HTTP/1.1
+Content-Type: application/json
+<<<<<<< HEAD
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6InN0cmluZyIsInJvbGUiOiJTdHVkZW50IiwiVmVyaWZ5IjoiRmFsc2UiLCJuYmYiOjE2Mjk5MTQwODQsImV4cCI6MTYyOTkxNDk4NCwiaWF0IjoxNjI5OTE0MDg0fQ.S1j_NNt_IV1ta-t4TqWH3qY27V97rVL5_xgKJmokOTs
+=======
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dSIsInJvbGUiOiJBZG1pbiIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2MjkzNDYyNjEsImV4cCI6MTYyOTM0NzE2MSwiaWF0IjoxNjI5MzQ2MjYxfQ.QeW7DWd_ZQV3GPj2ca56ZgScOfBN48oMYw_nACy99YA
+>>>>>>> 05ff746f43093097a3fec0a0d944d0e783266b0b
+
+{
+  "name": "lop01",
+  "description": "aaaaa"
+}
+
+
+###
+DELETE https://localhost:5001/api/class/1 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dSIsInJvbGUiOiJUZWFjaGVyIiwiVmVyaWZ5IjoiVHJ1ZSIsIm5iZiI6MTYyOTI2OTYzNSwiZXhwIjoxNjI5MjcwNTM1LCJpYXQiOjE2MjkyNjk2MzV9.m6590KXafhSmiW2iEbaDJIdJHZrUgBehP8QPWGyU4as
+Content-Type: application/json
+
+###
+PUT https://localhost:5001/api/class/1 HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "notad",
+  "description": "abc"
+}
+
+###
+GET https://localhost:5001/api/class/students/1?page=0&limit=1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dSIsInJvbGUiOiJUZWFjaGVyIiwiVmVyaWZ5IjoiVHJ1ZSIsIm5iZiI6MTYyOTI3MDQ2MSwiZXhwIjoxNjI5MjcxMzYxLCJpYXQiOjE2MjkyNzA0NjF9.pV_eIJ5EXrKO727krgFs_pl1F7uBbzPlpdJReNIfq-c
+
+
+###
+POST https://localhost:5001/api/course HTTP/1.1
+Content-Type: application/json
+{
+  "name": "string2",
+  "level": 0,
+  "isPublic": true,
+  "description": "string"
+}
+
+###
+DELETE https://localhost:5001/api/course/2 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dTMiLCJyb2xlIjoiSW5zdHJ1Y3RvciIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2MjkzNjQwNTUsImV4cCI6MTYyOTM2NDk1NSwiaWF0IjoxNjI5MzY0MDU1fQ.bDSLZQqWFLOBVKblqNQd0Orf4BVGHDM5e0QNvLAW2ZM
+
+
+###
+GET https://localhost:5001/api/course/get-owned?page=0&limit=2&searchValue HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dTMiLCJyb2xlIjoiSW5zdHJ1Y3RvciIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2Mjk2MzcxODgsImV4cCI6MTYyOTYzODA4OCwiaWF0IjoxNjI5NjM3MTg5fQ.cuAsLP9_utP06qroyZk6iJwW229c1R3Kc0tBR1ZHR8c
+
+###
+GET https://localhost:5001/api/course?page=0&limit=10 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dSIsInJvbGUiOiJBZG1pbiIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2MjkzODI0MjUsImV4cCI6MTYyOTM4MzMyNSwiaWF0IjoxNjI5MzgyNDI1fQ.DEYHajiM7FpHM4KyhbIJy8pIPDjX20PsapkubFqjm8o
+
+###
+POST https://localhost:5001/apo/exercise/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dSIsInJvbGUiOiJTdHVkZW50IiwiVmVyaWZ5IjoiVHJ1ZSIsIm5iZiI6MTYyOTkxNDMwNywiZXhwIjoxNjI5OTE1MjA3LCJpYXQiOjE2Mjk5MTQzMDd9.3d-5kzEfAqEViUqjyHcNfThUrBJwZ2LsMmTozXE-OyE
+
+{
+  "name": "string",
+  "description": "string",
+  "dueDate": "2021-08-25T17:56:55.930Z",
+  "dueTime": "12:30"
+}
+
+###
+POST https://localhost:5001/api/submission-quiz/7 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dTMiLCJyb2xlIjoiSW5zdHJ1Y3RvciIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2MzAzMzM0NjMsImV4cCI6MTYzMDMzNDM2MywiaWF0IjoxNjMwMzMzNDYzfQ.30m-mDckJTKn70Cnhu3Tl4vg6qdAeMxjmTZ2WLQliR4
+
+###
+GET https://localhost:5001/api/submission-quiz/my-quiz/7 HTTP/1.1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dTMiLCJyb2xlIjoiSW5zdHJ1Y3RvciIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2MzAzMzM0NjMsImV4cCI6MTYzMDMzNDM2MywiaWF0IjoxNjMwMzMzNDYzfQ.30m-mDckJTKn70Cnhu3Tl4vg6qdAeMxjmTZ2WLQliR4
+
+###
+POST url HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dTMiLCJyb2xlIjoiSW5zdHJ1Y3RvciIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2MzAzMzM0NjMsImV4cCI6MTYzMDMzNDM2MywiaWF0IjoxNjMwMzMzNDYzfQ.30m-mDckJTKn70Cnhu3Tl4vg6qdAeMxjmTZ2WLQliR4
+
+content
+=======
+
+###
+PUT https://localhost:5001/api/course/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dTMiLCJyb2xlIjoiSW5zdHJ1Y3RvciIsIlZlcmlmeSI6IlRydWUiLCJuYmYiOjE2Mjk2MzU1NDQsImV4cCI6MTYyOTYzNjQ0NCwiaWF0IjoxNjI5NjM1NTQ0fQ.129K9jKPEkq2MDfWZcC4XzAkYr97aqBv3wqQHpE2Czw
+
+{
+  "level": 2
+}
+
+###
+POST http://lmstech-group04.koreacentral.azurecontainer.io/api/auth/login HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "lamtvu",
+  "password": "string"
+}
+
+###
+GET http://lmstech-group04.koreacentral.azurecontainer.io/api/quiz/by-class/1 HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1bmlxdWVfbmFtZSI6ImxhbXR2dSIsInJvbGUiOiJUZWFjaGVyIiwiVmVyaWZ5IjoiRmFsc2UiLCJVc2VySWQiOiIyIiwibmJmIjoxNjMxOTg1MjEzLCJleHAiOjE2MzE5ODg4MTMsImlhdCI6MTYzMTk4NTIxM30.YhmKd_SGzP9_FUUKuPhRAzXHEiMAuZ9O_GJZfDJhE7c

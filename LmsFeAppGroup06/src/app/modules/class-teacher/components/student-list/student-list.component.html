@@ -1,0 +1,69 @@
+<div class="xl:grid xl:grid-cols-3 gap-4">
+    <div class="col-span-2 m-4 shadow-lg rounded-b-lg flex flex-col justify-between">
+        <table class="w-full shadow-lg">
+            <tr class="text-gray-600 font-medium bg-gray-200 ">
+                <td class="p-3 rounded-l-lg">stt</td>
+                <td class="p-3">username</td>
+                <td class="p-3 hidden lg:table-cell">Fullname</td>
+                <td class="p-3 hidden xl:table-cell">Email</td>
+                <td class="p-3 rounded-r-lg text-center">delete</td>
+            </tr>
+            <div class="p-4" *ngIf="isLoading">
+                <mat-spinner [diameter]="20"></mat-spinner>
+            </div>
+            <tbody *ngIf="$students | async as students">
+                <tr class="text-md hover:bg-gray-100" *ngFor="let student of students.data, let idx = index">
+                    <td class="pl-3 py-2 border-b-2 border-gray-100">{{idx}}</td>
+                    <td class="pl-3 py-2 border-b-2 border-gray-100">{{student.username}}</td>
+                    <td class="pl-3 py-2 border-b-2 border-gray-100 hidden lg:table-cell">{{student.fullName}}</td>
+                    <td class="pl-3 py-2 border-b-2 border-gray-100 hidden xl:table-cell">{{student.email}}</td>
+                    <td class="flex justify-center text-red-400">
+                        <button mat-icon-button>
+                            <mat-icon (click)="deleteStudentHandling(student)">delete</mat-icon>
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator [pageSize]="10" #paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page"
+            (page)="changePage($event)">
+        </mat-paginator>
+    </div>
+    <div class="mt-4">
+        <div class="shadow-lg">
+            <div class="p-4 border-b-2">
+                <div class="flex items-center">
+                    <div>Assistant:</div>
+                    <button mat-icon-button (click)="onChooseAssistant()">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+                <div class="ml-4" *ngIf="currentClass && currentClass.assistant">
+                    <div class="flex">
+                        <div class="mt-4">{{currentClass.assistant.username}}</div>
+                        <div class="mt-4 text-ml text-gray-400 text-xs ml-2">({{currentClass.assistant.fullName}})</div>
+                    </div>
+                    <div class="mt-2 text-xs text-gray-500">email: {{currentClass.assistant.email}}</div>
+                    <div class="mt-2 text-xs text-gray-500">phone: {{currentClass.assistant.phone}}</div>
+                </div>
+            </div>
+            <div class="p-4">
+                <div class="flex items-center">
+                    <div>Class Admin:</div>
+                    <button mat-icon-button (click)="onChooseClassAdmin()">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                </div>
+                <div class="ml-4" *ngIf="currentClass && currentClass.classAdmin">
+                    <div class="flex">
+                        <div class="mt-4">{{currentClass.classAdmin.username}}</div>
+                        <div class="mt-4 text-ml text-gray-400 text-xs ml-2">({{currentClass.classAdmin.fullName}})
+                        </div>
+                    </div>
+                    <div class="mt-2 text-xs text-gray-500">email: {{currentClass.classAdmin.email}}</div>
+                    <div class="mt-2 text-xs text-gray-500">phone: {{currentClass.classAdmin.phone}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

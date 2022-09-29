@@ -1,0 +1,33 @@
+<div class="shadow-lg p-4">
+    <div class="flex items-center" *ngIf="$quiz | async as quiz">
+        <button mat-icon-button [routerLink]="['/teacher/class',quiz.classId,'quiz']">
+            <mat-icon>keyboard_arrow_left</mat-icon>
+        </button>
+        <div class="text-gray-500 font-medium text-xl">Quiz: {{quiz.name}}</div>
+    </div>
+</div>
+<div class="grid grid-cols-5 gap-4">
+    <div class="shadow-lg p-4 col-span-4">
+        <app-question-detail [questionId]="currentQuestionId" (onsave)="loadQuestion($event)"
+            (onDelete)="deleteQuestion($event)"></app-question-detail>
+    </div>
+    <div class="shadow-lg p-4">
+        <div class="col-span-4 font-medium text-base">Questions:</div>
+        <div *ngIf="isLoading">
+            <mat-spinner [diameter]="30"></mat-spinner>
+        </div>
+        <div *ngIf="$questions | async as quesions">
+            <div *ngIf="!isLoading" class="grid grid-cols-4 gap-4">
+                <div class="shadow-lg rounded-lg bg-gray-100 p-2 text-center hover:bg-gray-200 cursor-pointer"
+                    [ngClass]="{'bg-gray-200':currentQuestionId ===question.id}"
+                    *ngFor="let question of quesions; let idx = index" (click)="onChooseQuestion(question.id)">{{idx +
+                    1}}</div>
+            </div>
+            <button mat-icon-button>
+                <mat-icon (click)="loadCreateQuestion()">add
+                </mat-icon>
+            </button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="flex text-yellow-300">
+  <div *ngFor="let star of arrStar">
+    <span [ngSwitch]="star">
+    <p *ngSwitchCase="1">
+      <mat-icon>star</mat-icon>
+    </p>
+    <p *ngSwitchCase="0">
+      <mat-icon>star_border</mat-icon>
+    </p>
+    <p *ngSwitchDefault>
+      <mat-icon>star_half</mat-icon>
+    </p>
+    </span>
+  </div>
+</div>
+

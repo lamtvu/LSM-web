@@ -1,0 +1,22 @@
+<div>
+    <div class="text-lg font-medium">
+        Invite
+    </div>
+    <mat-form-field>
+        <input matInput placeholder="username" #usernameInput>
+    </mat-form-field>
+    <mat-error *ngIf="dialogState.state === 'ERROR'">
+        {{dialogState.message}}
+    </mat-error>
+    <div class="flex justify-center" *ngIf="dialogState.state === 'LOADING'">
+        <mat-spinner [diameter]="30"></mat-spinner>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+        <button [disabled]="dialogState.state === 'LOADING'"
+            class="bg-blue-400 rounded hover:bg-blue-300 text-white py-2 px-5 focus:outline-none shadow-lg"
+            (click)="inviteHandling()"
+            >Apply</button>
+        <button class="bg-gray-400 rounded hover:bg-gray-300 text-white py-2 px-5 focus:outline-none shadow-lg"
+            [mat-dialog-close]="false">Cancel</button>
+    </div>
+</div>

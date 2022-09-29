@@ -1,0 +1,39 @@
+<div class="flex flex-col" [formGroup]="exerciseForm">
+    <div class="w text-lg font-medium my-4 text-gray-500">{{ !this.exercise?'Create Exercise':'Edit Exercise' }}</div>
+    <mat-form-field class="w-full">
+        <input matInput placeholder="Name" formControlName="name">
+        <mat-error *ngIf="errorHandling('name','required')">required</mat-error>
+        <mat-error *ngIf="errorHandling('name','minlength')">minlength is 5</mat-error>
+        <mat-error *ngIf="errorHandling('name','maxlength')">maxlength is 50</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <textarea matInput placeholder="Description" rows="10" formControlName="description"></textarea>
+        <mat-error>required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <mat-label>Duedate</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="dueDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error>required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="w-full">
+        <mat-label>Duetime</mat-label>
+        <input matInput placeholder="14:03" formControlName="dueTime">
+        <mat-error *ngIf="errorHandling('dueTime','required')">required</mat-error>
+        <mat-error *ngIf="errorHandling('dueTime','pattern')">format string is 'HH:mm'</mat-error>
+    </mat-form-field>
+    <mat-error *ngIf="dialogState.state==='ERROR'">{{dialogState.messager}}</mat-error>
+    <div *ngIf="dialogState.state==='LOADING'">
+        <mat-spinner [diameter]="20">
+        </mat-spinner>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+        <button class="bg-blue-400 rounded hover:bg-blue-300 text-white py-2 px-5 focus:outline-none shadow-lg"
+            (click)="clickHandling()">
+            {{exercise? 'Edit' : 'Create'}}</button>
+        <button class="bg-gray-400 rounded hover:bg-gray-300 text-white py-2 px-5 focus:outline-none shadow-lg"
+            [matDialogClose]="false">
+            Cancel</button>
+    </div>
+</div>

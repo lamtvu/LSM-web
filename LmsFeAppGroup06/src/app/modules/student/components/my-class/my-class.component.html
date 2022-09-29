@@ -1,0 +1,13 @@
+<div class="shadow-lg flex items-center justify-between">
+    <div class="text-gray-500 font-medium text-xl m-4">My Classes</div>
+    <div class="mr-8"><button class="bg-blue-400 rounded hover:bg-blue-300 text-white py-2 px-4 focus:outline-none"
+      [routerLink]="['/student/request']" >Send Request</button></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 m-4 h-full"*ngIf="$classes | async as classes">
+<app-class-cart *ngFor="let class of classes?.data" [_class]="class"
+[routerLink]="['/student/class',class.id,]"></app-class-cart>
+</div>
+<mat-paginator [length]="pageEvent.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+(page)="pageHandling($event)" aria-label="Select page" #paginator>
+</mat-paginator>
+

@@ -1,0 +1,18 @@
+<div class="shadow-lg p-4 hover:bg-gray-100 grid grid-cols-3" >
+    <div class="col-span-2">
+        <div class="text-xl text-gray-500 font-medium mt-4">
+        {{_class?.name}}
+        </div>
+        <div class="text-md text-gray-400 mt-4">
+            {{_class?.description}}
+        </div>
+        <div class="text-md text-blue-400 mt-4">
+            {{_class?.teacher?.fullName}}
+        </div>
+    </div>
+    <div class="flex justify-end items-start">
+        <div class="bg-gray-200 p-4 text-2xl w-14 h-14 rounded-full">
+            <mat-icon style="font-size: 25px;"> person</mat-icon>
+        </div>
+    </div>
+</div>

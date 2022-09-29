@@ -1,0 +1,29 @@
+<div class="min-h-screen">
+    <div class="m-4">
+    </div>
+    <div *ngIf="$quizs |async as quizs">
+        <div class="p-4 m-4 shadow-lg rounded-lg relative group" *ngFor="let quiz of quizs">
+            <div class="flex justify-between">
+                <div class="text-xl font-medium my-4">
+                    <div>
+                        {{quiz.name}}
+                    </div>
+                    <div class="text-sm font-thin">
+                        cerate date:{{quiz.createDate |date:'dd/MM/yyyy'}}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4" [innerText]="quiz.description">
+            </div>
+            <div class="text-gray-500">
+                start time: <span class="text-blue-400">{{quiz.startDate |date:'dd/MM/yyyy HH:mm'}}</span>
+            </div>
+            <div class="text-gray-500">
+                Duration:<span class="text-red-400"> {{quiz.duration}}'</span>
+            </div>
+            <div class="absolute top-0 left-0 bg-gray-200 opacity-50 hidden justify-center items-center w-full h-full group-hover:flex">
+                <button mat-raised-button [routerLink]="['../detail/',quiz.id]">Detail</button>
+            </div>
+        </div>
+    </div>
+</div>

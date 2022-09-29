@@ -1,0 +1,31 @@
+<div class="min-h-screen">
+    <div class="flex justify-center" *ngIf="isLoading">
+        <mat-spinner [diameter]="20">
+        </mat-spinner>
+    </div>
+    <div *ngIf="$exercise |async as exercises">
+        <div class="p-4 m-4 shadow-lg rounded-lg group relative" *ngFor="let exercise of exercises">
+            <div class="flex justify-between">
+                <div class="text-xl font-medium my-4">
+                    <div>
+                        {{exercise.name}}
+                    </div>
+                    <div class="text-sm font-thin">
+                        create date: {{exercise.createDate |date:'dd/MM/yyyy'}}
+                    </div>
+                </div>
+            </div>
+            <div class="mb-4" [innerText]="exercise.description">
+            </div>
+            <div class="text-blue-400 font-medium">
+                Due time: {{exercise.dueDate | date:'dd/MM/yyyy HH:mm'}}
+            </div>
+            <div class="bg-gray-200 opacity-50 top-0 left-0 w-full h-full
+                items-center justify-center absolute rounded-lg
+                hidden group-hover:flex">
+                <button mat-raised-button
+                    [routerLink]="['/student/class/1/class-detail/exercise/', exercise.id]">Detail</button>
+            </div>
+        </div>
+    </div>
+</div>

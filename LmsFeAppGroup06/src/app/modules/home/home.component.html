@@ -1,0 +1,91 @@
+<app-header [currentUser]="currentUser"></app-header>
+<div class="relative">
+  <app-home-carousel></app-home-carousel>
+  <div
+    class="absolute w-96 h-80 top-1/2 left-40 transform -translate-y-1/2  z-10 bg-gray-100 rounded-lg hidden lg:block"
+    style="box-shadow: 0 1px 10px gray;">
+    <div class="font-bold text-4xl text-gray-700 p-4 text-left">
+      Our mission is contribute knowledge to everyone
+    </div>
+    <div class="text-lg text-gray-500 px-4">
+      Pretty big mission, right? That's why we need your help!
+    </div>
+    <div>
+      <div
+        class="cursor-pointer p-4 text-center text-2xl text-white font-bold mx-4 mt-4 shadow-xl bg-gray-400 hover:bg-gray-500"
+        role="button" [routerLink]="['/login']">Register</div>
+    </div>
+  </div>
+</div>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1430 140" fill="#fafafa"
+  class="bg-gradient-to-r from-green-600 to-yellow-300">
+  <path
+    d="M0 140h1440V46.75C1360.635 15.583 1268.302 0 1163 0 812.13 0 674 113.78 370.736 127.279 188.866 135.374 65.286 119.625 0 80.03V140z">
+  </path>
+</svg>
+
+<div class="p-9 bg-gray-50">
+  <div class="flex gap-5 relative justify-center items-center">
+    <div class="text-6xl text-gray-600 font-medium animate-pulse">
+      LMSTECH
+    </div>
+    <div class="text-4xl text-center font-medium text-gray-400" style="width: 600px;">
+      Learn Together Grow Together.<br>
+      Make everyday more meaningful by learning together or sharing your knowledge to everyone.
+    </div>
+  </div>
+</div>
+<div class="bg-gradient-to-r from-green-600 to-yellow-300">
+  <svg viewBox="0 0 1430 140" class="jss38" fill="#fafafa" xmlns="http://www.w3.org/2000/svg">
+    <path
+      d="M1440 0v59.969c-65.287-39.594-188.865-55.343-370.736-47.248C766 26.221 627.87 140 277 140 171.698 140 79.365 124.417 0 93.25V0h1440z">
+    </path>
+  </svg>
+  <div class="px-5">
+    <div class="px-5">
+      <div class="p-5 mt-5 font-bold text-white lg:w-1/3">
+        <div class="flex">
+          <div class="text-8xl">1</div>
+          <div>
+            <div class="text-3xl"> INSTRUCTOR</div>
+            <div class="text-xl text-gray-200 text-justify">
+              As a instructor, you can create and manage your own courses, thereby enriching the website's course
+              library
+              and sharing your knowledge with the community.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-5 mt-5 font-bold text-white lg:w-1/3 lg:ml-auto">
+        <div class="flex">
+          <div class="text-8xl">2</div>
+          <div>
+            <div class="text-3xl"> TEACHER</div>
+            <div class="text-xl text-gray-200 text-justify">
+              As a teacher, you can create and manage your own class, so you can plan your learning and the courses that
+              will be taught to your students.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="p-5 mt-5 font-bold text-white lg:w-1/3">
+        <div class="flex">
+          <div class="text-8xl">3</div>
+          <div>
+            <div class="text-3xl">STUDENT</div>
+            <div class="text-xl text-gray-200 text-justify">
+              As a student, you can enroll in the class you want and study with your classmates to gain new knowledge
+              everyday
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1430 140" fill="#fafafa" class="jss897">
+      <path
+        d="M0 140h1440V46.75C1360.635 15.583 1268.302 0 1163 0 812.13 0 674 113.78 370.736 127.279 188.866 135.374 65.286 119.625 0 80.03V140z">
+      </path>
+    </svg>
+  </div>
+  <!-- Footer -->
+  <app-footer></app-footer>

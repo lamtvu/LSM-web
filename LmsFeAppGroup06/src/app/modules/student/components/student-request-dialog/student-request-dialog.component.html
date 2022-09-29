@@ -1,0 +1,12 @@
+<div class="text-lg">
+  Do you want to
+  <span [ngClass]="{'text-red-400': title == 'join','text-blue-400': title == 'cancel request to join'}">{{title}}</span>
+  class?
+</div>
+<div class="grid grid-cols-2 gap-4 mt-4">
+<button class="bg-blue-400 rounded hover:bg-blue-300 text-white py-2 px-5 focus:outline-none"
+(click)="clickHandling()">Confirm</button>
+<button class="bg-red-400 rounded hover:bg-red-300 text-white py-2 px-5 focus:outline-none shadow-lg"
+[matDialogClose]="false">
+Cancel</button>
+</div>

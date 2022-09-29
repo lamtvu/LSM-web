@@ -1,0 +1,32 @@
+<div class="w-full">
+  <div>
+    <div class="text-lg font-medium text-blue-400 mb-4">Create Report</div>
+    <div >
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput type="text" matInput name="title"
+        formControlName="title">
+        
+        <mat-icon matSuffix>insert_drive_file</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Content</mat-label>
+
+        <input matInput type="text" matInput name="content"
+        formControlName="content">
+       
+        <mat-icon matSuffix>description</mat-icon>
+      </mat-form-field>
+    </div>
+    <div><mat-spinner [diameter]="30" #loading></mat-spinner></div>
+    <div class="grid grid-cols-2 gap-4 mt-4">
+      <button class="bg-blue-400 rounded hover:bg-blue-300 text-white py-2 px-5 focus:outline-none"
+  >Confirm</button>
+      <button class="bg-red-400 rounded hover:bg-red-300 text-white py-2 px-5 focus:outline-none shadow-lg"
+      [matDialogClose]="false">
+      Cancel</button>
+    </div>
+  </div>
+</div>

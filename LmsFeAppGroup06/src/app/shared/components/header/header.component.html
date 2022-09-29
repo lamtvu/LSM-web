@@ -1,0 +1,58 @@
+<div class="flex bg-gray-700 shadow-md items-center justify-between h-14">
+  <div class="flex items-center">
+    <div class="ml-2">
+      <button mat-icon-button class="text-white" (click)="onSideNavClick()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+    <div class="ml-4 font-semibold text-gray-200 text-lg p-2" [routerLink]="['/home']" role="button">
+      LMSTECH
+    </div>
+  </div>
+  <div>
+    <ng-container *ngIf="!currentUser; else logged">
+      <div class="flex">
+        <div class="text-gray-200 hover:text-white p-4 text-lg" role="button" [routerLink]="['/login']">Register</div>
+        <div class="text-gray-200 hover:text-white p-4 text-lg mr-7" role="button" [routerLink]="['/login']">Sign In
+        </div>
+      </div>
+    </ng-container>
+    <ng-template #logged>
+      <div class="flex items-center">
+        <div class="text-gray-200 hover:text-white mr-6 py-3" [matMenuTriggerFor]="aboveMenu">
+          <button mat-button
+          (click)=" clickHandling()">
+            <mat-icon>notifications</mat-icon>
+          </button>
+          <mat-menu #aboveMenu="matMenu" xPosition="before" >
+          <div *ngFor="let item of notifications" >
+            <button mat-menu-item (click)="openDialog(item.content)">{{item.title}}</button>
+          </div>
+          </mat-menu>
+
+        </div>
+        <!-- Image, username, menu -->
+        <div class="relative">
+          <div class="flex items-center" [matMenuTriggerFor]="afterMenu1">
+            <div class="py-3 mr-1">
+              <ng-container *ngIf="currentUser?.image == null; else elseTemplate">
+                <mat-icon class="text-white mt-1">person</mat-icon>
+              </ng-container>
+              <ng-template #elseTemplate>
+                <img class="h-9 w-9 rounded-full" [src]="'https://lmstechbe.azurewebsites.net/api/user/avatar/' + currentUser?.id"
+                  alt="" role="button">
+              </ng-template>
+            </div>
+            <div class="text-white py-3 text-lg mr-20" role="button">
+              {{currentUser?.username}}
+            </div>
+          </div>
+          <mat-menu #afterMenu1="matMenu" xPosition="after">
+            <button mat-menu-item [routerLink]="['/student/information/']">Change Information</button>
+            <button mat-menu-item (click)="logoutHandling()">Sign Out</button>
+          </mat-menu>
+        </div>
+      </div>
+    </ng-template>
+  </div>
+</div>

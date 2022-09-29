@@ -1,0 +1,43 @@
+<div class="w-full" [formGroup]="changeInfoForm">
+  <div>
+    <div class="text-lg font-medium text-blue-400 mb-4">Change Information</div>
+    <div>
+      <mat-form-field>
+        <mat-label>Fullname</mat-label>
+        <input matInput type="text" matInput name="fullName"
+        formControlName="fullName" minlength="5" maxlength="50">
+        <mat-error *ngIf="errorHandling('fullName','required')">required</mat-error>
+        <mat-error *ngIf="errorHandling('fullName','minlength')">minlength is 5</mat-error>
+        <mat-error *ngIf="errorHandling('fullName','required')">maxlength is 50</mat-error>
+        <mat-icon matSuffix>perm_identity</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field>
+        <mat-label>Phone</mat-label>
+        <input matInput type="text" matInput name="phone"
+        formControlName="phone" minlength="5" maxlength="15">
+        <mat-error *ngIf="errorHandling('phone','required')">required</mat-error>
+        <mat-error *ngIf="errorHandling('phone','minlength')">minlength is 10</mat-error>
+        <mat-error *ngIf="errorHandling('phone','maxlength')">maxlength is 15</mat-error>
+        <mat-error *ngIf="errorHandling('phone','pattern')">invalid</mat-error>
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-radio-group class="gender" formControlName="gender">
+        <p class="font-medium">Gender</p>
+        <mat-radio-button value="Male" [checked]="true">Male</mat-radio-button>
+        <mat-radio-button value="Female" class="ml-4">Female</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div *ngIf="isLoading"><mat-spinner [diameter]="30" #loading></mat-spinner></div>
+    <div class="grid grid-cols-2 gap-4 mt-4">
+      <button class="bg-blue-400 rounded hover:bg-blue-300 text-white py-2 px-5 focus:outline-none"
+      (click)="handlerChangeInfor()">Confirm</button>
+      <button class="bg-red-400 rounded hover:bg-red-300 text-white py-2 px-5 focus:outline-none shadow-lg"
+      [matDialogClose]="false">
+      Cancel</button>
+    </div>
+  </div>
+</div>

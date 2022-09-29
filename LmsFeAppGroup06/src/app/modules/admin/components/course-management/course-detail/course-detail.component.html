@@ -1,0 +1,45 @@
+<div class="shadow-lg text-gray-500 p-4">
+  <div class="text-xl text-center py-4 font-medium">Course Information</div>
+  <div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Course Title:
+      </div>
+      <div class='text-base ml-4'>
+        {{courseData.name}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Status:
+      </div>
+      <div class='text-base ml-4'>
+        {{courseData.isPublic}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Description:
+      </div>
+      <div class='text-base ml-8 text-left'>
+        {{courseData.description}}
+      </div>
+    </div>
+    <div class="flex mt-4">
+      <div class='text-base font-medium ml-4'>
+        Image:
+      </div>
+      <div class='text-base ml-8 text-left'>
+        <label for="image">
+          <input type="file" name="image" id="image" style="display:none;" (change)="onSelectFile($event)" />
+          <img src="{}" alt="upload" width="90" height="90" class="border-2" />
+        </label>
+      </div>
+      <div>
+        <button mat-icon-button class="text-blue-400"
+          >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>

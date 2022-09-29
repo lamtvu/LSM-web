@@ -1,0 +1,12 @@
+<app-header (isShowSideNav)="sidenav.onToggle()"></app-header>
+<div>
+  <div class="con flex">
+    <app-side-nav [dataLinks]="dataLinks" #sidenav></app-side-nav>
+    <div class="content w-full">
+      <div class="min-h-screen">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

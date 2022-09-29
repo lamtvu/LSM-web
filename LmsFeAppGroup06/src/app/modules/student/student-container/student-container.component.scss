@@ -1,0 +1,15 @@
+.menu
+{
+ background: linear-gradient(to right, #2da0a0, #ffe47a);
+}
+.flex-menu
+{
+    background: linear-gradient(to right, #61afaf, #ffeca1) ;
+      box-shadow: 0 4px 8px 0 rgb(0 0 0 / 10%), 0 6px 20px 0 rgb(0 0 0 / 5%);
+      cursor: pointer;
+}
+.flex-menu:hover
+{
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
