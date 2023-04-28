@@ -7,7 +7,7 @@ import { SectionCreateDto, SectionReadDto } from '../../../Dto/SectionDto';
 @Injectable()
 export class SectionService {
 
-  readonly baseUrl = "https://lmstechbe.azurewebsites.net/api/Section";
+  readonly baseUrl = "https://localhost:5001/api/Section";
   public editEmit = new EventEmitter<boolean>();
   constructor(
     private _httpClientService: HttpClient

@@ -7,12 +7,12 @@ import { ResponseDto } from '../../../Dto/response';
 @Injectable()
 export class ReportService {
 
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/report';
+  readonly baseUrl = 'https://localhost:5001/api/report';
   constructor(
     private _httpClient: HttpClient
   ) { }
 
   createReport(classId: number, formData:ReportReadDTO): Observable<ResponseDto<ReportReadDTO>> {
-    return this._httpClient.post<ResponseDto<ReportReadDTO>>('https://lmstechbe.azurewebsites.net/api/report',{params:{classId: classId,formData:formData}});
+    return this._httpClient.post<ResponseDto<ReportReadDTO>>('https://localhost:5001/api/report',{params:{classId: classId,formData:formData}});
   }
 }

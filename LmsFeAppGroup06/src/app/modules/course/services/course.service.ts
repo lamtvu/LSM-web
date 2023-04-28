@@ -12,7 +12,7 @@ import { UserReadDto } from '../../../Dto/userDto';
 export class CourseService {
 
 
-  readonly baseUrl = "https://lmstechbe.azurewebsites.net/api/course";
+  readonly baseUrl = "https://localhost:5001/api/course";
   courseId?: number;
   course?: CourseReadDto;
   courseEmit = new EventEmitter<CourseReadDto>();
@@ -52,18 +52,18 @@ export class CourseService {
   }
 
   createcourseReview(courseId: number, createReviewForm: { star: number, comment: string }): Observable<ResponseDto<null>> {
-    return this._httpClientService.post<ResponseDto<null>>('https://lmstechbe.azurewebsites.net/api/review', createReviewForm, { params: { courseId: courseId } });
+    return this._httpClientService.post<ResponseDto<null>>('https://localhost:5001/api/review', createReviewForm, { params: { courseId: courseId } });
   }
 
   getcoursesReview(searchValue: string, courseId: number, page: number, limit: number): Observable<ResponseDto<CommentReadDto[]>> {
-    return this._httpClientService.get<ResponseDto<CommentReadDto[]>>("https://lmstechbe.azurewebsites.net/api/review/get-by-page", { params: { searchValue: searchValue, courseId: courseId, page: page, limit: limit } });
+    return this._httpClientService.get<ResponseDto<CommentReadDto[]>>("https://localhost:5001/api/review/get-by-page", { params: { searchValue: searchValue, courseId: courseId, page: page, limit: limit } });
   }
   getcoursesReviewAll(courseId: number): Observable<ResponseDto<CommentReadDto[]>> {
-    return this._httpClientService.get<ResponseDto<CommentReadDto[]>>("https://lmstechbe.azurewebsites.net/api/review/get-all", { params: { courseId: courseId } });
+    return this._httpClientService.get<ResponseDto<CommentReadDto[]>>("https://localhost:5001/api/review/get-all", { params: { courseId: courseId } });
   }
 
   getUserById(userId: number): Observable<ResponseDto<UserReadDto>> {
-    return this._httpClientService.get<ResponseDto<UserReadDto>>('https://lmstechbe.azurewebsites.net/api/user/' + userId);
+    return this._httpClientService.get<ResponseDto<UserReadDto>>('https://localhost:5001/api/user/' + userId);
   }
 
 }

@@ -12,7 +12,7 @@ import { ChangeUserInfoDto } from '../../Dto/change-user-info-dto';
   { providedIn: 'platform' }
 )
 export class UserService {
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/user';
+  readonly baseUrl = 'https://localhost:5001/api/user';
 
   user?: UserReadDto;
   userEmmit = new EventEmitter<UserReadDto>();
@@ -29,7 +29,7 @@ export class UserService {
   }
 
   getAnnouncement(): Observable<ResponseDto<AnnouncenmentReadDto[]>> {
-    return this._httpClientService.get<ResponseDto<AnnouncenmentReadDto[]>>('https://lmstechbe.azurewebsites.net/api/announcement/get-all-notify');
+    return this._httpClientService.get<ResponseDto<AnnouncenmentReadDto[]>>('https://localhost:5001/api/announcement/get-all-notify');
   }
 
   changePassword(pass: UserChangePasswordDto): Observable<ResponseDto<string>> {
@@ -51,7 +51,7 @@ export class UserService {
   }
 
   getVerify(email: string): Observable<ResponseDto<null>> {
-    return this._httpClientService.post<ResponseDto<null>>('https://lmstechbe.azurewebsites.net/api/auth/getVerify', null, { params: { email: email } });
+    return this._httpClientService.post<ResponseDto<null>>('https://localhost:5001/api/auth/getVerify', null, { params: { email: email } });
   }
 
   changeRole(userId: number, roleId: number): Observable<ResponseDto<null>> {

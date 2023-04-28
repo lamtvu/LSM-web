@@ -7,7 +7,7 @@ import { ResponseDto } from '../../../Dto/response';
 @Injectable()
 export class ContentService {
 
-  readonly baseUrl = "https://lmstechbe.azurewebsites.net/api/Content";
+  readonly baseUrl = "https://localhost:5001/api/Content";
   public editEmit = new EventEmitter<boolean>();
   constructor(
     private _httpClientService: HttpClient

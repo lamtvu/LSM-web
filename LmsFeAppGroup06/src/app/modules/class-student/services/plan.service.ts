@@ -6,7 +6,7 @@ import { ResponseDto } from '../../../Dto/response';
 
 @Injectable()
 export class PlanService {
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/announcement';
+  readonly baseUrl = 'https://localhost:5001/api/announcement';
   constructor(
     private _httpClient: HttpClient
   ) { }

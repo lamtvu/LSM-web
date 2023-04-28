@@ -59,7 +59,7 @@
       <div class='text-base ml-8 text-left'>
         <label for="image">
           <input type="file" name="image" id="image" style="display:none;" (change)="onSelectFile($event)" />
-          <img [src]="'https://lmstechbe.azurewebsites.net/api/user/avatar/'+this.userData.id" alt="upload" width="90" height="90" class="border-2" />
+          <img [src]="'https://localhost:5001/api/user/avatar/'+this.userData.id" alt="upload" width="90" height="90" class="border-2" />
         </label>
       </div>
     </div>

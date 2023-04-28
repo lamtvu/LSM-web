@@ -9,7 +9,7 @@ import { TokenDto } from '../Dto/token';
   providedIn: 'root'
 })
 export class AuthService {
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/auth';
+  readonly baseUrl = 'https://localhost:5001/api/auth';
   constructor(private _httpClientService: HttpClient) { }
 
   login(loginForm: { username: string, password: string }): Observable<ResponseDto<TokenDto>> {

@@ -11,7 +11,7 @@
         </div>
       </ng-container>
       <ng-template #elseTemplate>
-        <img class="h-10 w-10 rounded-full" [src]="'https://lmstechbe.azurewebsites.net/api/user/avatar/3'" alt="">
+        <img class="h-10 w-10 rounded-full" [src]="'https://localhost:5001/api/user/avatar/3'" alt="">
       </ng-template>
     </div>
     <div class="w-full" [formGroup]="commentForm">
@@ -49,7 +49,7 @@
           alt="">
       </div>
       <ng-template #image>
-        <img class="h-10 w-10 rounded-full" [src]="'https://lmstechbe.azurewebsites.net/api/user/avatar/' + comment.senderId" alt="">
+        <img class="h-10 w-10 rounded-full" [src]="'https://localhost:5001/api/user/avatar/' + comment.senderId" alt="">
       </ng-template>
 
       <div class="flex justify-between w-full">

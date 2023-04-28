@@ -13,7 +13,7 @@ import { UserReadDto } from '../../../Dto/userDto';
 })
 export class AdminService {
 
-  readonly baseUrl = "https://lmstechbe.azurewebsites.net/api/user";
+  readonly baseUrl = "https://localhost:5001/api/user";
   public editEmit = new EventEmitter<boolean>();
   constructor(
     private _httpClientService: HttpClient
@@ -49,11 +49,11 @@ export class AdminService {
 
 
   getCourseList(searchValue:string): Observable<ResponseDto<PageDataDto<CourseReadDto[]>>> {
-    return this._httpClientService.get<ResponseDto<PageDataDto<CourseReadDto[]>>>("https://lmstechbe.azurewebsites.net/api/course/get-all", {params:{searchValue : searchValue}});
+    return this._httpClientService.get<ResponseDto<PageDataDto<CourseReadDto[]>>>("https://localhost:5001/api/course/get-all", {params:{searchValue : searchValue}});
   }
 
   changeLockCourse(id: number): Observable<ResponseDto<string>> {
-    return this._httpClientService.put<ResponseDto<string>>("https://lmstechbe.azurewebsites.net/api/course/change-lock/"+id,{params:{id:id}});
+    return this._httpClientService.put<ResponseDto<string>>("https://localhost:5001/api/course/change-lock/"+id,{params:{id:id}});
   }
 
 }

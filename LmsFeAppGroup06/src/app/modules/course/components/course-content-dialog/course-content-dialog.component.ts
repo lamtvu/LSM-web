@@ -15,7 +15,7 @@ export class CourseContentDialogComponent implements OnInit {
   private $unsubcriber = new Subject();
   isLoading: boolean = false;
   public content!: ContentReadDto;
-  public url: string = 'https://lmstechbe.azurewebsites.net/api/Content/file/';
+  public url: string = 'https://localhost:5001/api/Content/file/';
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public contentData: ContentReadDto

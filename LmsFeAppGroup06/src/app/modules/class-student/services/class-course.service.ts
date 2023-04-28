@@ -8,7 +8,7 @@ import { ResponseDto } from '../../../Dto/response';
 @Injectable()
 export class ClassCourseService {
 
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/course'
+  readonly baseUrl = 'https://localhost:5001/api/course'
 
   constructor(
     private _httpClient: HttpClient

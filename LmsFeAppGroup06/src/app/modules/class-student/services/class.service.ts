@@ -14,7 +14,7 @@ export class ClassService {
   public classEmit = new EventEmitter<ClassReadDto>();
   public classId?: number;
   public class?: ClassReadDto;
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/class';
+  readonly baseUrl = 'https://localhost:5001/api/class';
 
   constructor(
     private _httpClient: HttpClient

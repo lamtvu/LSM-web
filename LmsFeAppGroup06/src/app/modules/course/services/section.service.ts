@@ -8,7 +8,7 @@ import { SectionCreateDto, SectionReadDto } from '../../../Dto/SectionDto';
 @Injectable()
 export class SectionService {
 
-  readonly baseUrl = "https://lmstechbe.azurewebsites.net/api/Section";
+  readonly baseUrl = "https://localhost:5001/api/Section";
   public editEmit = new EventEmitter<boolean>();
   public section?: SectionReadDto[];
   constructor(
@@ -36,7 +36,7 @@ export class SectionService {
   }
 
   getContent(contentId: number, data: {responseType: string}): Observable<ResponseDto<ContentReadDto>>{
-    return this._httpClientService.get<ResponseDto<ContentReadDto>>('https://lmstechbe.azurewebsites.net/api/Content/file/'+contentId);
+    return this._httpClientService.get<ResponseDto<ContentReadDto>>('https://localhost:5001/api/Content/file/'+contentId);
   }
 
 }

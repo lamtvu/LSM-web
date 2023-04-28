@@ -7,7 +7,7 @@ import { SubmissionExerciseReadDto, SubmissionQuizReaDto } from '../../../Dto/su
 @Injectable()
 export class SubmisstionExerciseService {
 
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/submission-exercise';
+  readonly baseUrl = 'https://localhost:5001/api/submission-exercise';
 
   constructor(
     private _httpClient: HttpClient

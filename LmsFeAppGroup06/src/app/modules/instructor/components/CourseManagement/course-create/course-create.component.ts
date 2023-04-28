@@ -47,7 +47,7 @@ export class CourseCreateComponent implements OnInit {
       return;
     }
     this.courseForm.patchValue(this.course);
-    this.url = 'https://lmstechbe.azurewebsites.net/api/course/image/' + this.course.id;
+    this.url = 'https://localhost:5001/api/course/image/' + this.course.id;
   }
 
   // Get image String

@@ -6,7 +6,7 @@ import { ResponseDto } from '../../../Dto/response';
 
 @Injectable()
 export class ExerciseService {
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/exercise'
+  readonly baseUrl = 'https://localhost:5001/api/exercise'
   exercise?: ExerciseReadDto;
   exerciseEmmit = new EventEmitter<ExerciseReadDto>();
 

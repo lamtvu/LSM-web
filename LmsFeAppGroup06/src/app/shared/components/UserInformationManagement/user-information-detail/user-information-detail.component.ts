@@ -40,7 +40,7 @@ export class UserInformationDetailComponent implements OnInit {
         this.isLoading = false;
         this.currentUser = res.data;
         this.checkRole(this.currentUser.roleId);
-        this.urlAvatar = 'https://lmstechbe.azurewebsites.net/api/user/avatar/' + this.currentUser?.id;
+        this.urlAvatar = 'https://localhost:5001/api/user/avatar/' + this.currentUser?.id;
       });
     this._userService.editEmit.pipe(takeUntil(this.$unsubscribe)).subscribe(res => {
       this.isLoading = true;

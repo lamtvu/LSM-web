@@ -7,7 +7,7 @@ import { ResponseDto } from '../../../Dto/response';
 @Injectable()
 export class ReportService {
 
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/report';
+  readonly baseUrl = 'https://localhost:5001/api/report';
 
   constructor(
     private _httpCient: HttpClient

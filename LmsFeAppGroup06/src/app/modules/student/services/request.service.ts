@@ -10,7 +10,7 @@ import { ResponseDto } from '../../../Dto/response';
 })
 export class RequestService {
 
-  readonly baseUrl = 'https://lmstechbe.azurewebsites.net/api/request-student';
+  readonly baseUrl = 'https://localhost:5001/api/request-student';
 
   constructor(
     private _httpClientService: HttpClient

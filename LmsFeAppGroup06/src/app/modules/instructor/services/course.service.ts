@@ -11,7 +11,7 @@ import { ResponseDto } from '../../../Dto/response';
 export class CourseService {
 
 
-  readonly baseUrl = "https://lmstechbe.azurewebsites.net/api/course";
+  readonly baseUrl = "https://localhost:5001/api/course";
   public editEmit = new EventEmitter<boolean>();
   constructor(
     private _httpClientService: HttpClient
@@ -42,7 +42,7 @@ export class CourseService {
   }
   
   getCommentReviewAll(courseId: number, pageIndex: number, pageSize: number): Observable<ResponseDto<PageDataDto<CommentReadDto[]>>> {
-    return this._httpClientService.get<ResponseDto<PageDataDto<CommentReadDto[]>>>("https://lmstechbe.azurewebsites.net/api/review/get-by-page/" + courseId, { params: { page: pageIndex, limit: pageSize } });
+    return this._httpClientService.get<ResponseDto<PageDataDto<CommentReadDto[]>>>("https://localhost:5001/api/review/get-by-page/" + courseId, { params: { page: pageIndex, limit: pageSize } });
   }
 
 
